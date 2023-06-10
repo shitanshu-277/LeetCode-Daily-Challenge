@@ -1,0 +1,22 @@
+// Binary Search
+
+class Solution {
+public:
+    long f(int n,int ind,int a){
+        int b=max(a-ind,0);
+        long res=long(a+b)*(a-b+1)/2;
+        b=max(a-((n-1)-ind),0);
+        res+=long(a+b)*(a-b+1)/2;
+        return res-a;
+    }
+    int maxValue(int n, int index, int maxSum) {
+        maxSum-=n;
+        int low=0,high=maxSum;
+        while(low<high){
+            int mid=(low+high+1)/2;
+            if(f(n,index,mid)<=maxSum) low=mid;
+            else high=mid-1;
+        }
+        return low+1;
+    }
+};
