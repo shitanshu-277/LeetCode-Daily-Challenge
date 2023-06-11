@@ -1,0 +1,28 @@
+#include<bits/stdc++.h>
+using namespace std;
+class SnapshotArray {
+public:
+    int cnt=0;
+    vector<map<int,int>>ans;
+    SnapshotArray(int length) {
+        ans.resize(length);
+        for(int i=0;i<length;i++){
+            ans[i][0]=0;
+        }
+    }
+    void set(int index, int val) {
+        ans[index][cnt]=val;
+    }
+    
+    int snap() {
+        return cnt++;
+    }
+    
+    int get(int index, int snap_id) {
+        if(ans[index].find(snap_id)==ans[index].end()){
+            auto it=--ans[index].lower_bound(snap_id);
+            return it->second;
+        }
+        return ans[index][snap_id];
+    }
+};
