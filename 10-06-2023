@@ -1,5 +1,3 @@
-// Binary Search//
-
 class Solution {
 public:
     long f(int n,int ind,int a){
